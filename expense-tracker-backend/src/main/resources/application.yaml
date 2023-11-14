@@ -14,4 +14,4 @@ spring:
 
 logging:
   level:
-    com.expense.tracker.expense.tracker.backend: DEBUG
+    root: DEBUG
