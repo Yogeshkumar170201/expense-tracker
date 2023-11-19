@@ -35,6 +35,8 @@ public class User implements UserDetails {
 
     private boolean isEnabled = false;
 
+    private Long amount;
+
     @OneToMany(
             mappedBy = "user"
     )
