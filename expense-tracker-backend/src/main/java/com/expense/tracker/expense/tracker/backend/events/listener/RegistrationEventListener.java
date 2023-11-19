@@ -33,7 +33,7 @@ public class RegistrationEventListener implements ApplicationListener<Registrati
         RegistrationVerificationToken regVerToken = new RegistrationVerificationToken(token, user);
         service.saveToken(regVerToken);
         String url = event.getApplicationUrl()+
-                "register?token="+
+                "verifyRegistration?token="+
                 token;
         emailSenderService.sendSimpleMail(user.getEmail(),BODY_OF_EMAIL+url, SUBJECT_OF_EMAIL);
 

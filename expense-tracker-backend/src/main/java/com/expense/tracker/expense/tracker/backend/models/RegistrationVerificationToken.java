@@ -27,7 +27,7 @@ public class RegistrationVerificationToken {
     private Long id;
     private String token;
     private Date expirationTime;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(
             name = "user_id"
     )
