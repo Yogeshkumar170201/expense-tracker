@@ -33,6 +33,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private boolean isEnabled = false;
+
     @OneToMany(
             mappedBy = "user"
     )
@@ -70,6 +72,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }
