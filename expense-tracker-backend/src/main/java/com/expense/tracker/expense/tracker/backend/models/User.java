@@ -36,6 +36,8 @@ public class User implements UserDetails {
     private boolean isEnabled = false;
 
     private Long amount;
+    private Long income;
+    private Long expense;
 
     @OneToMany(
             mappedBy = "user"

@@ -23,7 +23,8 @@ public class TransactionService {
     public Response addIncome(IncomeRequest incomeRequest, String email)  {
 
         User user = userDao.findByEmail(email).orElse(null);
-
+        user.setAmount(incomeRequest.getAmount()+user.getAmount());
+        user.setIncome(incomeRequest.getAmount()+user.getIncome());
         Transaction incomeTransaction = Transaction.builder()
                 .type(TransactionType.Income)
                 .title(incomeRequest.getTitle())
@@ -34,6 +35,7 @@ public class TransactionService {
                 .user(user)
                 .build();
 
+        userDao.save(user);
         transactionDao.save(incomeTransaction);
         return Response.builder()
                 .message("Income is added")
@@ -42,7 +44,8 @@ public class TransactionService {
 
     public Response addExpense(ExpenseRequest expenseRequest, String email) {
         User user = userDao.findByEmail(email).orElse(null);
-
+        user.setAmount(user.getAmount()-expenseRequest.getAmount());
+        user.setExpense(expenseRequest.getAmount()+user.getExpense());
         Transaction incomeTransaction = Transaction.builder()
                 .type(TransactionType.Expense)
                 .title(expenseRequest.getTitle())
@@ -53,6 +56,7 @@ public class TransactionService {
                 .user(user)
                 .build();
 
+        userDao.save(user);
         transactionDao.save(incomeTransaction);
         return Response.builder()
                 .message("Expense is added")

@@ -1,13 +1,19 @@
-import Sidebar from "../components/Sidebar"
+"use client"
+import "./page.css";
+
+import DashboardLeft from "../components/DashboardLeft"
+import RightSidebar from "../components/RightSidebar";
 
 const Transactions = () => {
   return (
-    <div className='flex flex-row justify-between p-[30px] flex-wrap bg-gradient-to-r from-[#ded3ed] to-[#8a6bb5]'>
-    <Sidebar/>
-    <div className="flex flex-col rounded-[30px] bg-[#EFEAE2] p-[20px] h-[90vh] w-[1200px] gap-y-[70px] text-[30px] text-[#231f82] border-8 border-white">
-      Transactions
+    <div className='flex flex-row justify-between h-[100vh] bg-gradient-to-r from-[#DED2EC] to-[#8A6BB5] p-[3%] main-resp-850px'>
+      <div className='w-[30%] left-sidebar-850px'>
+        <DashboardLeft/>
+      </div>
+      <div className='w-[70%] right-sidebar-850px'>
+        <RightSidebar/>
+      </div>
     </div>
-  </div>
   )
 }
 

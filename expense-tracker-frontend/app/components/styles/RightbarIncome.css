@@ -1,0 +1,24 @@
+@media only screen and (max-width: 850px) {
+    .right-resp-850px{
+        margin-left: 0px;
+        border-width: 5px;
+        height:1600px;
+    }
+
+    .right-body-resp-850px{
+        flex-direction: column-reverse;
+    }
+
+    .right-form-resp-850px{
+        width: 100%;
+        margin-bottom: 100px;
+    }
+
+    .right-icon-resp-850px{
+        width: 100%;
+        margin-bottom: 50px;
+        margin-top: 50px;
+        padding: 10px;
+    }
+  
+}

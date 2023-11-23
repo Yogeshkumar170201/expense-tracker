@@ -12,6 +12,7 @@ import com.expense.tracker.expense.tracker.backend.models.User;
 import com.expense.tracker.expense.tracker.backend.utils.Response;
 import com.expense.tracker.expense.tracker.backend.utils.Role;
 import com.expense.tracker.expense.tracker.backend.utils.TokenType;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -52,6 +53,9 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .isEnabled(false)
+                .amount(0L)
+                .income(0L)
+                .expense(0L)
                 .build();
         userDao.save(user);
 

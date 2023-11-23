@@ -6,6 +6,7 @@ import com.expense.tracker.expense.tracker.backend.service.AuthenticationService
 import com.expense.tracker.expense.tracker.backend.service.RegistrationVerificationService;
 import com.expense.tracker.expense.tracker.backend.utils.Response;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class AuthController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticateRequest request
     ){
         return ResponseEntity.ok(authenticationService.authenticate(request));

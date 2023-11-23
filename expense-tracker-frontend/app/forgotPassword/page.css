@@ -1,0 +1,21 @@
+@media only screen and (max-width: 850px) {
+    .main-resp-850px{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        height: 1200px;
+    }
+
+    .left-sidebar-850px{
+        width: 100%;
+        height: 700px;
+        padding: 10px;
+    }
+
+    .right-sidebar-850px{
+        width: 100%;
+        height: 500px;
+        padding: 10px;
+    }
+  
+}
