@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import './styles/ForgotLeft.css'
 import { useState } from 'react'
+import axios from 'axios'
 
 export const ForgotLeft = () => {
   const [forgotRequest, setforgotRequest] =  useState(
@@ -18,25 +19,31 @@ export const ForgotLeft = () => {
   
 
   const forgotUser = async ()=>{
-  
-    // const {data} = await axios.post("http://localhost:8082/auth/forgot", forgotRequest)
-    // const {data} = await axios.post("http://localhost:8082/auth/authenticate", forgotRequest)
-    // console.log(data['token']);
-    // const res = await axios.get("http://localhost:8082/demo/hello",
-    //   {
-    //     headers: {
-    //       'Authorization': `Bearer ${data['token']}`
-    //     }
-    //   }
-    // )
-    // console.log(res)
-    setforgotRequest(
-      {
-        "email":"",
-        "password":"",
-        "confirmPassword":""
+
+    try {
+      if(forgotRequest.password===forgotRequest.confirmPassword){
+        const res = await axios.put("http://localhost:8082/auth/forgot-password",{
+          "email":forgotRequest.email,
+          "password":forgotRequest.password
+        })
+        console.log(res)
+        alert(res.data.message)
+      }else{
+        alert('Passwords should be same');
       }
-    )
+    } catch (error:any) {
+      alert(error.message)
+    }finally{
+      setforgotRequest(
+        {
+          "email":"",
+          "password":"",
+          "confirmPassword":""
+        }
+      )
+    }
+
+
   }
   return (
     <div className="flex flex-col border-[10px] h-[100%] mr-[2%] bg-[#EFEAE2] border-[#FFFFFF] rounded-[20px] text-[#2C2987] left-resp-850px p-[20px]">
@@ -51,7 +58,7 @@ export const ForgotLeft = () => {
             <Link href={'/'}>
               <p>New User?</p>
             </Link>
-            <Link href={'/'}>
+            <Link href={'/login'}>
               <p>Already Registered?</p>
             </Link>
           </div>
