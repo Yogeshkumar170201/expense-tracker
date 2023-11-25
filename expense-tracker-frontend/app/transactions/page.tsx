@@ -2,7 +2,7 @@
 import "./page.css";
 
 import DashboardLeft from "../components/DashboardLeft"
-import RightSidebar from "../components/RightSidebar";
+import RightbarTransactions from "../components/RightbarTransactions";
 
 const Transactions = () => {
   return (
@@ -11,7 +11,7 @@ const Transactions = () => {
         <DashboardLeft/>
       </div>
       <div className='w-[70%] right-sidebar-850px'>
-        <RightSidebar/>
+        <RightbarTransactions/>
       </div>
     </div>
   )

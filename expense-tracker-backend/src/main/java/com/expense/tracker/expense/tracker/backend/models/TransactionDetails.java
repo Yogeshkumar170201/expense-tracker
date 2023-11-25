@@ -14,7 +14,8 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transaction {
+@Table(name = "transaction_details")
+public class TransactionDetails {
     @Id
     @GeneratedValue(
             strategy = GenerationType.AUTO
@@ -28,7 +29,7 @@ public class Transaction {
     private String source;
     private String reference;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(
             name = "user_id"
     )

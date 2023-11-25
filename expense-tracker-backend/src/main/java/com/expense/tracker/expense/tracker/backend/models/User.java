@@ -1,6 +1,7 @@
 package com.expense.tracker.expense.tracker.backend.models;
 
 import com.expense.tracker.expense.tracker.backend.utils.Role;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,6 +43,7 @@ public class User implements UserDetails {
     @OneToMany(
             mappedBy = "user"
     )
+    @JsonIgnoreProperties("user")
     private List<Token> tokens;
 
     @Override

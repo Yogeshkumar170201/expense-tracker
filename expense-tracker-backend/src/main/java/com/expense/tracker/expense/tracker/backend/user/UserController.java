@@ -1,12 +1,13 @@
 package com.expense.tracker.expense.tracker.backend.user;
 
+import com.expense.tracker.expense.tracker.backend.models.TransactionDetails;
 import com.expense.tracker.expense.tracker.backend.service.JwtService;
 import com.expense.tracker.expense.tracker.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -30,4 +31,11 @@ public class UserController {
         String email = jwtService.extractUsername(jwtToken);
         return userService.getExpenseByEmail(email);
     }
+
+    @GetMapping("/transactions/{token}")
+    public List<TransactionDetails> findTransactionById(@PathVariable("token") String token){
+        String email = jwtService.extractUsername(token);
+        return userService.findTransactionsByEmail(email);
+    }
+
 }

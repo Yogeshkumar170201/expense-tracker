@@ -1,7 +1,7 @@
 "use client";
 
 import './styles/RightbarExpense.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ExpenseImage from '../assets/ExpenseImage.png';
 import Image from 'next/image';
 import axios from 'axios';
@@ -11,6 +11,27 @@ const RightbarExpense = () => {
 
     const cookies = document.cookie.split('=')
     const token = cookies.at(1);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8082/user/expense/${token}`,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setRes(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+
+  }, []); 
+
+
+  const [res, setRes] = useState();
 
 
     const [expenseInput, setExpenseInput] = useState({
@@ -54,7 +75,7 @@ const RightbarExpense = () => {
   return (
     <div className="flex flex-col rounded-[30px] bg-[#EFEAE2] p-[20px] h-[90vh] ml-[2%] text-[30px] text-[#231f82] border-8 border-white right-resp-850px">
         <p className="font-bold text-[40px]">Expenses</p>
-        <p className="text-center font-bold border-[8px] border-[#b9cceb] rounded-[20px] p-[10px]">Total Expense : <span className="text-[#C32D30]">₹1600</span></p>
+        <p className="text-center font-bold border-[8px] border-[#b9cceb] rounded-[20px] p-[10px]">Total Expense : <span className="text-[#C32D30]">₹{res}</span></p>
         <div className="flex flex-row justify-between mt-[2%] right-body-resp-850px">
           <div className="w-[40%] flex flex-col justify-between gap-y-[15px] right-form-resp-850px">
             <input placeholder="Expense Title" type="text" className="p-[10px] text-[20px] rounded-[10px] rounded-[10px] border-[4px] border-[#b9cceb]" name="title" value={expenseInput.title} onChange={handleChange} />
